@@ -1,6 +1,6 @@
-package com.practitioner.projectrestjava.Repository;
+package com.practitioner.projectrestjava.repository;
 
-import com.practitioner.projectrestjava.Model.Pessoa;
+import com.practitioner.projectrestjava.model.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

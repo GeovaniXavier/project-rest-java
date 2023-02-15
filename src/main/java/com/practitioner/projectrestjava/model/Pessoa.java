@@ -1,4 +1,4 @@
-package com.practitioner.projectrestjava.Model;
+package com.practitioner.projectrestjava.model;
 
 import jakarta.persistence.*;
 

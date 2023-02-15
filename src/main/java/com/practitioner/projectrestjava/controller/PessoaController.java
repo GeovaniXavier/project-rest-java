@@ -1,7 +1,7 @@
-package com.practitioner.projectrestjava.Controller;
+package com.practitioner.projectrestjava.controller;
 
-import com.practitioner.projectrestjava.Dto.PessoaDto;
-import com.practitioner.projectrestjava.Service.PessoaService;
+import com.practitioner.projectrestjava.dto.PessoaDto;
+import com.practitioner.projectrestjava.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,23 +17,27 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,
+                            MediaType.APPLICATION_XML_VALUE})
     public List<PessoaDto> findAll(PessoaDto pessoa) {
         return pessoaService.findAll();
     }
 
-    @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "{id}", produces = {MediaType.APPLICATION_JSON_VALUE,
+                                            MediaType.APPLICATION_XML_VALUE})
     public PessoaDto findById(PessoaDto pessoa) throws Exception {
         return pessoaService.findById(pessoa.getId());
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+                 consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PessoaDto create(@RequestBody PessoaDto pessoa) {
         return pessoaService.create(pessoa);
     }
 
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+                consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PessoaDto update(@RequestBody PessoaDto pessoa) throws Exception {
         return pessoaService.update(pessoa);
     }

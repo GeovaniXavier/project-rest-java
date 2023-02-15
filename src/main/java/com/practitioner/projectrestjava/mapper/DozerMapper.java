@@ -1,4 +1,4 @@
-package com.practitioner.projectrestjava.Mapper;
+package com.practitioner.projectrestjava.mapper;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;

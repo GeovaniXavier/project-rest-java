@@ -1,9 +1,9 @@
-package com.practitioner.projectrestjava.Service;
+package com.practitioner.projectrestjava.service;
 
-import com.practitioner.projectrestjava.Dto.PessoaDto;
-import com.practitioner.projectrestjava.Mapper.DozerMapper;
-import com.practitioner.projectrestjava.Model.Pessoa;
-import com.practitioner.projectrestjava.Repository.PessoaRepository;
+import com.practitioner.projectrestjava.dto.PessoaDto;
+import com.practitioner.projectrestjava.mapper.DozerMapper;
+import com.practitioner.projectrestjava.model.Pessoa;
+import com.practitioner.projectrestjava.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

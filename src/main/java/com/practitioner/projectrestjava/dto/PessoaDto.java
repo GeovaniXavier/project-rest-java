@@ -1,4 +1,4 @@
-package com.practitioner.projectrestjava.Dto;
+package com.practitioner.projectrestjava.dto;
 
 public class PessoaDto {
 
