@@ -1,5 +1,7 @@
 package com.practitioner.projectrestjava.Service;
 
+import com.practitioner.projectrestjava.Dto.PessoaDto;
+import com.practitioner.projectrestjava.Mapper.DozerMapper;
 import com.practitioner.projectrestjava.Model.Pessoa;
 import com.practitioner.projectrestjava.Repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +16,28 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public List<Pessoa> findAll() {
-        return pessoaRepository.findAll();
+    public List<PessoaDto> findAll() {
+        return DozerMapper.parseListObject(pessoaRepository.findAll(), PessoaDto.class);
     }
 
-    public Pessoa findById(Long id) throws Exception {
-        return pessoaRepository.findById(id).orElseThrow(() -> new Exception("ID NÃO ENCONTRADO."));
+    public PessoaDto findById(Long id) throws Exception {
+        var entity = pessoaRepository.findById(id)
+                .orElseThrow(() -> new Exception("ID NÃO ENCONTRADO."));
+        return DozerMapper.parseObject(entity, PessoaDto.class);
     }
 
-    public Pessoa create(Pessoa pessoa) {
-        return pessoaRepository.save(pessoa);
+    public PessoaDto create(PessoaDto pessoa) {
+        var entity = DozerMapper.parseObject(pessoa, Pessoa.class);
+        var vo = DozerMapper.parseObject(pessoaRepository.save(entity), PessoaDto.class);
+        return vo;
     }
 
 
-    public Pessoa update(Pessoa pessoa) throws Exception {
+    public PessoaDto update(PessoaDto pessoa) throws Exception {
         Pessoa entity = pessoaRepository.findById(pessoa.getId())
                 .orElseThrow(() -> new Exception("ID NÃO ENCONTRADO"));
-        return pessoaRepository.save(pessoa);
+        var vo = DozerMapper.parseObject(pessoaRepository.save(entity), PessoaDto.class);
+        return vo;
     }
 
     public void delete(Long id) throws Exception {

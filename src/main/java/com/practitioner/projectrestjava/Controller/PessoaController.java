@@ -1,6 +1,6 @@
 package com.practitioner.projectrestjava.Controller;
 
-import com.practitioner.projectrestjava.Model.Pessoa;
+import com.practitioner.projectrestjava.Dto.PessoaDto;
 import com.practitioner.projectrestjava.Service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,22 +18,23 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Pessoa> findAll(Pessoa pessoa) {
+    public List<PessoaDto> findAll(PessoaDto pessoa) {
         return pessoaService.findAll();
     }
+
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Pessoa findById(Pessoa pessoa) throws Exception {
+    public PessoaDto findById(PessoaDto pessoa) throws Exception {
         return pessoaService.findById(pessoa.getId());
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Pessoa create(@RequestBody Pessoa pessoa) {
+    public PessoaDto create(@RequestBody PessoaDto pessoa) {
         return pessoaService.create(pessoa);
     }
 
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Pessoa update(@RequestBody Pessoa pessoa) throws Exception {
+    public PessoaDto update(@RequestBody PessoaDto pessoa) throws Exception {
         return pessoaService.update(pessoa);
     }
 
