@@ -1,8 +1,16 @@
 package com.practitioner.projectrestjava.dto;
 
-public class PessoaDto {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.dozermapper.core.Mapping;
+import org.springframework.hateoas.RepresentationModel;
 
-    private Long id;
+import java.io.Serializable;
+
+public class PessoaDto extends RepresentationModel<PessoaDto> {
+
+    @JsonProperty("id")
+    @Mapping("id")
+    private Long key;
     private String nome;
     private String segundoNome;
     private String endereco;
@@ -11,12 +19,12 @@ public class PessoaDto {
     public PessoaDto() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getNome() {

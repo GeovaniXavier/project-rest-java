@@ -1,7 +1,8 @@
 package com.practitioner.projectrestjava.controller;
 
+import com.practitioner.projectrestjava.dto.LivroDto;
 import com.practitioner.projectrestjava.dto.PessoaDto;
-import com.practitioner.projectrestjava.service.PessoaService;
+import com.practitioner.projectrestjava.service.LivroService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,19 +17,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pessoa")
-@Tag(name = "Pessoa", description = "EndPoint")
-public class PessoaController {
+@RequestMapping("/livro")
+@Tag(name = "Livro", description = "EndPoint")
+public class LivroController {
 
 
     @Autowired
-    private PessoaService pessoaService;
+    private LivroService livroService;
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
-    @Operation(summary = "Procura todas as pessoas",
-            description = "Todas as pessoas",
-            tags = {"Pessoa"},
+    @Operation(summary = "Procura todos os livros",
+            description = "Todos os livros",
+            tags = {"Livro"},
             responses = {@ApiResponse(description = "Sucess", responseCode = "200", content = {
                     @Content(
                             mediaType = "application/json",
@@ -41,16 +42,16 @@ public class PessoaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public List<PessoaDto> findAll(PessoaDto pessoa) {
-        return pessoaService.findAll();
+    public List<LivroDto> findAll(LivroDto livro) {
+        return livroService.findAll();
     }
 
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE})
 
-    @Operation(summary = "Procura uma pessoas",
-            description = "uma pessoas",
-            tags = {"Pessoa"},
+    @Operation(summary = "Procura um livro",
+            description = "um livro",
+            tags = {"Livro"},
             responses = {@ApiResponse(description = "Sucess", responseCode = "200", content =
             @Content(schema = @Schema(implementation = PessoaDto.class))
             ),
@@ -61,15 +62,15 @@ public class PessoaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public PessoaDto findById(@PathVariable(value = "id") Long id) throws Exception {
-        return pessoaService.findById(id);
+    public LivroDto findById(@PathVariable(value = "id") Long id) throws Exception {
+        return livroService.findById(id);
     }
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @Operation(summary = "Cria uma pessoas",
-            description = "Cria pessoas",
-            tags = {"Pessoa"},
+    @Operation(summary = "Cria um livro",
+            description = "Cria livros",
+            tags = {"Livro"},
             responses = {@ApiResponse(description = "Sucess", responseCode = "200", content =
             @Content(schema = @Schema(implementation = PessoaDto.class))
             ),
@@ -79,16 +80,16 @@ public class PessoaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public PessoaDto create(@RequestBody PessoaDto pessoa) throws Exception {
-        return pessoaService.create(pessoa);
+    public LivroDto create(@RequestBody LivroDto livro) throws Exception {
+        return livroService.create(livro);
     }
 
 
     @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @Operation(summary = "Atualiza uma pessoas",
-            description = "Atualiza pessoas",
-            tags = {"Pessoa"},
+    @Operation(summary = "Atualiza um livro",
+            description = "Atualiza livro",
+            tags = {"Livro"},
             responses = {@ApiResponse(description = "Update", responseCode = "200", content =
             @Content(schema = @Schema(implementation = PessoaDto.class))
             ),
@@ -98,16 +99,15 @@ public class PessoaController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
             }
     )
-    public PessoaDto update(@RequestBody PessoaDto pessoa) throws Exception {
-        return pessoaService.update(pessoa);
+    public LivroDto update(@RequestBody LivroDto livro) throws Exception {
+        return livroService.update(livro);
     }
 
 
-
     @DeleteMapping(value = "{id}")
-    @Operation(summary = "Deleta uma pessoas",
-            description = "Deleta pessoas",
-            tags = {"Pessoa"},
+    @Operation(summary = "Deleta um livro",
+            description = "Deleta livro",
+            tags = {"Livro"},
             responses = {@ApiResponse(description = "No Content", responseCode = "204", content = @Content
             ),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -117,7 +117,7 @@ public class PessoaController {
             }
     )
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) throws Exception {
-        pessoaService.delete(id);
+        livroService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
